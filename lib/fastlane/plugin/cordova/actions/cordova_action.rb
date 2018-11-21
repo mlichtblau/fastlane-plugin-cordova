@@ -71,7 +71,7 @@ module Fastlane
 
       def self.check_platform(params)
         platform = params[:platform]
-        if platform && !File.directory?("./platforms/#{platform}")
+        if platform && !File.directory?(".././platforms/#{platform}")
           if params[:cordova_no_fetch]
             sh "cordova platform add #{platform} --nofetch"
           else
@@ -104,7 +104,7 @@ module Fastlane
         if params[:platform].to_s == 'ios' && !params[:build_number].to_s.empty?
           cf_bundle_version = params[:build_number].to_s
           Actions::UpdateInfoPlistAction.run(
-            xcodeproj: "./platforms/ios/#{self.get_app_name}.xcodeproj",
+            xcodeproj: ".././platforms/ios/#{self.get_app_name}.xcodeproj",
             plist_path: "#{self.get_app_name}/#{self.get_app_name}-Info.plist",
             block: lambda { |plist|
               plist['CFBundleVersion'] = cf_bundle_version
@@ -119,8 +119,8 @@ module Fastlane
         app_name = self.get_app_name()
         build_type = is_release ? 'release' : 'debug'
 
-        ENV['CORDOVA_ANDROID_RELEASE_BUILD_PATH'] = "./platforms/android/app/build/outputs/apk/release/app-#{build_type}.apk"
-        ENV['CORDOVA_IOS_RELEASE_BUILD_PATH'] = "./platforms/ios/build/device/#{app_name}.ipa"
+        ENV['CORDOVA_ANDROID_RELEASE_BUILD_PATH'] = ".././platforms/android/app/build/outputs/apk/release/app-#{build_type}.apk"
+        ENV['CORDOVA_IOS_RELEASE_BUILD_PATH'] = ".././platforms/ios/build/device/#{app_name}.ipa"
       end
 
       def self.run(params)
@@ -301,7 +301,7 @@ module Fastlane
           )",
           "cordova(
             platform: 'android',
-            keystore_path: './staging.keystore',
+            keystore_path: '.././staging.keystore',
             keystore_alias: 'alias_name',
             keystore_password: 'store_password'
           )"
