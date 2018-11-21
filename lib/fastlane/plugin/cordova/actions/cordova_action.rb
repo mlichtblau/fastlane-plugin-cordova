@@ -81,7 +81,7 @@ module Fastlane
       end
 
       def self.get_app_name()
-        config = REXML::Document.new(File.open('config.xml'))
+        config = REXML::Document.new(File.open('./config.xml'))
         return config.elements['widget'].elements['name'].first.value
       end
 
